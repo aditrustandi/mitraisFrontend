@@ -1,0 +1,95 @@
+<mat-grid-list cols="1" rowHeight="100vh">
+    <mat-grid-tile>
+  
+      <mat-card>
+  
+        <mat-card-header>
+          <mat-card-title>Registration</mat-card-title>
+        </mat-card-header>
+  
+        <mat-card-content>
+          <form [formGroup]="form" class="form">
+  
+            <mat-form-field class="full-width">
+              <mat-label>Mobile number <span class="mandatory">*</span></mat-label>
+              <span class="areaCode" [@areaCode]="phone.valid" matPrefix>+62 &nbsp;</span>
+              <input formControlName="phone" matInput aria-label="Area code">
+              <mat-icon matSuffix>mobile_friendly</mat-icon>
+              <div class="custom-error" [@error]="errorMsg(phone)">
+                <span *ngIf="errorMsg(phone) && phone.errors.required">Mobile number is required</span>
+                <span *ngIf="errorMsg(phone) && phone.errors.pattern">Please enter valid Indonesian phone number</span>
+                <span *ngIf="errorMsg(phone) && phone.errors.minlength">Minimum length phone number is 10 digits</span>
+                <span *ngIf="errorMsg(phone) && phone.errors.maxlength">Maximum length phone number is 15 digits</span>
+                <div class="arrow-down"></div>
+              </div>
+            </mat-form-field>
+      
+            <mat-form-field class="full-width">
+              <mat-label>First Name <span class="mandatory">*</span></mat-label>
+              <input formControlName="first_name" matInput aria-label="First Name">
+              <mat-icon matSuffix>account_circle</mat-icon>
+  
+              <div class="custom-error" [@error]="errorMsg(first_name)">
+                <span *ngIf="errorMsg(first_name) && first_name.errors.required">First name is required</span>
+                <span *ngIf="errorMsg(first_name) && first_name.errors.pattern">Only letters is allowed</span>
+                <div class="arrow-down"></div>
+              </div>
+            </mat-form-field>
+      
+            <mat-form-field class="full-width">
+              <mat-label>Last Name <span class="mandatory">*</span></mat-label>
+              <input formControlName="last_name" matInput aria-label="Last Name">
+              <mat-icon matSuffix>account_circle</mat-icon>
+  
+              <div class="custom-error" [@error]="errorMsg(last_name)">
+                <span *ngIf="errorMsg(last_name) && last_name.errors.required">Last name is required</span>
+                <span *ngIf="errorMsg(last_name) && last_name.errors.pattern">Only letters is allowed</span>
+                <div class="arrow-down"></div>
+              </div>
+            </mat-form-field>
+      
+            <mat-form-field class="full-width">
+              <mat-label>Date of birth</mat-label>
+              <input formControlName="date_of_birth" matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matSuffix>calendar_today</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+  
+              <div class="custom-error" [@error]="errorMsg(date_of_birth)">
+                <span *ngIf="errorMsg(date_of_birth)">Date of birth wrong format</span>
+                <div class="arrow-down"></div>
+              </div>
+            </mat-form-field>
+            
+            <mat-radio-group formControlName="gender" aria-label="Gender">
+              <mat-radio-button value="m">Male</mat-radio-button>
+              <mat-radio-button value="f">Female</mat-radio-button>
+            </mat-radio-group>
+  
+            <mat-form-field class="full-width">
+              <mat-label>Email <span class="mandatory">*</span></mat-label>
+              <input formControlName="email" matInput aria-label="Email">
+              <mat-icon matSuffix>alternate_email</mat-icon>
+  
+              <div class="custom-error" [@error]="errorMsg(email)">
+                <span *ngIf="errorMsg(email) && email.errors.required">Email is required</span>
+                <span *ngIf="errorMsg(email) && email.errors.email">Email format is wrong</span>
+                <div class="arrow-down"></div>
+              </div>
+            </mat-form-field>
+    
+          </form>
+        </mat-card-content>
+  
+        <mat-card-actions>
+          <button (click)="onSubmit()" [disabled]="form.invalid || isLoading" class="full-width" mat-raised-button color="primary">Register</button>
+        </mat-card-actions>
+  
+        <mat-card-actions *ngIf="isRegistered">
+          <a [routerLink]="['/login']" routerLinkActive="router-link-active"  class="full-width" mat-raised-button color="accent">Login</a>
+        </mat-card-actions>
+      </mat-card>
+  
+    </mat-grid-tile>
+  </mat-grid-list>
