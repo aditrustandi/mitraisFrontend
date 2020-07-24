@@ -2,9 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.2.
 
-## IMPORTANT
+## Configuration
 
 Change Api URL in `src`->`environment`->`apiURL` (according to yours API URL)
+
+## Server Side
+
+Go to `https://github.com/aditrustandi/mitraisBackend` ( using laravel v7 )
 
 ## Development server
 
