@@ -4,9 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## IMPORTANT
 
-Change Api URL in `src`---v
-                          `environment`---v
-                                          `apiURL` <---- according to yours API URL
+Change Api URL in `src`->`environment`->`apiURL` (according to yours API URL)
 
 ## Development server
 
